@@ -1,0 +1,31 @@
+CREATE DATABASE IF NOT EXISTS Try;
+USE Try;
+CREATE TABLE Provider (
+    Provider_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    user_name VARCHAR(255) NOT NULL UNIQUE, -- Used for login
+    password VARCHAR(255) NOT NULL, -- Hashed password
+    email VARCHAR(255) NOT NULL UNIQUE, -- Used for OTP verification
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+           ON UPDATE CURRENT_TIMESTAMP
+
+);
+
+CREATE TABLE password_history (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Provider_id INT NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    changed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (Provider_id) REFERENCES Provider(provider_id)
+);
+CREATE TABLE Otp (
+    otp_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Provider_id INT NOT NULL,
+    otp_code VARCHAR(10) NOT NULL,
+    expires_at DATETIME NOT NULL,
+    verified BOOLEAN DEFAULT FALSE,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (Provider_id) REFERENCES Provider(Provider_id) ON DELETE CASCADE
+);

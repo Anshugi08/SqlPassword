@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.infinite.jsf.Provider.model">
+
+  <class name="Provider" table="Provider">
+  
+    <id name="providerId" column="Provider_id">
+      <generator class="identity"/>
+    </id>
+    
+    <property name="firstName"  column="first_name" type="string"/>
+    <property name="lastName"   column="last_name" type="string"/>
+    <property name="userName"   column="user_name"  unique="true" type="string"/>
+    <property name="password"   column="password"    type="string"/>
+    <property name="email"      column="email"      unique="true"  type="string"/>
+    
+    <property name="createdAt"  column="created_at" not-null="true" type="timestamp"/>
+    <property name="updatedAt"  column="updated_at" not-null="true" type="timestamp"/>
+
+  </class>
+</hibernate-mapping>

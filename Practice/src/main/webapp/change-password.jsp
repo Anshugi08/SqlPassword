@@ -1,15 +1,15 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
 <f:view>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8"/>
+  <title>Change Password</title>
 </head>
 <body>
-<h:form>
+  <h:form id="changePwdForm">
     <h:panelGrid columns="2" cellpadding="5">
       <h:outputLabel for="old" value="Old Password:"/>
       <h:inputSecret id="old"
@@ -27,11 +27,16 @@
                      required="true"/>
 
       <h:outputText/>
-      <h:commandButton value="Change" action="#{providerController.changePassword}"/>
+      <h:commandButton value="Change"
+                       action="#{providerController.changePassword}"
+                       type="submit"/>
 
       <h:outputText/>
-      <h:commandLink value="Back" action="dashboard.jsf"/>
+      <h:commandLink value="Back"
+                     action="dashboard.jsp?faces-redirect=true"/>
     </h:panelGrid>
+
+    <!-- Show validation or error messages here -->
     <h:messages globalOnly="true" layout="table"/>
   </h:form>
 </body>
